@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.unisa.alunos.vo.AlunoVo;
+
 /**
  * @author zyon.silva
  * Class para receber a requisicao via web para cadastra o aluno *
@@ -25,13 +27,19 @@ public class AcresentarAlunoServlet extends HttpServlet{
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		String nome = request.getParameter("nome");
-		int idade = Integer.parseInt(request.getParameter("idade"));
-		String ra = request.getParameter("ra");
-		String curso = request.getParameter("curso");
-		response.getWriter().print(ra);
+		
+		response.getWriter().print(caputrarDadosAluno(request));
 		//enviado para lista
 		//response.sendRedirect("sucesso.html");
+	}
+	
+	private static AlunoVo caputrarDadosAluno(HttpServletRequest request){
+		AlunoVo aluno = new AlunoVo();
+		aluno.setNome(request.getParameter("nome"));
+		aluno.setIdade(Integer.parseInt(request.getParameter("idade")));
+		aluno.setRa(request.getParameter("ra"));
+		aluno.setCurso(request.getParameter("curso"));
+		return aluno;
 	}
 
 }
