@@ -1,7 +1,6 @@
 package br.unisa.alunos.servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,9 +25,10 @@ public class AcresentarAlunoServlet extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		
-		response.getWriter().print(caputrarDadosAluno(request));
+		//capturando aluno
+		AlunoVo aluno = caputrarDadosAluno(request);
+		//inserindo aluno no banco
+		response.getWriter().print(aluno);
 		//enviado para lista
 		//response.sendRedirect("sucesso.html");
 	}
