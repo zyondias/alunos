@@ -5,11 +5,6 @@
 	id="WebApp_ID" version="3.0">
 	<display-name>alunos</display-name>
 	<welcome-file-list>
-		<welcome-file>lista.html</welcome-file>
-		<welcome-file>lista.htm</welcome-file>
-		<welcome-file>lista.jsp</welcome-file>
-		<welcome-file>lista.html</welcome-file>
-		<welcome-file>lista.htm</welcome-file>
-		<welcome-file>lista.jsp</welcome-file>
+		<welcome-file>listarAlunos</welcome-file>
 	</welcome-file-list>
 </web-app>
