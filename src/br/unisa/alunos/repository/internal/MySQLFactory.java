@@ -1,6 +1,7 @@
 package br.unisa.alunos.repository.internal;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.text.MessageFormat;
 
@@ -17,9 +18,9 @@ public class MySQLFactory {
 	
 	private static String userName = "root";
 	
-	private static String password = "";
+	private static String password = "falxmen30";
 	
-	private static BasicDataSource basicDataSource;
+//	private static BasicDataSource basicDataSource;
 	private static Connection conn;
 
 	private static final String CONNECTION_STRING = "jdbc:mysql://{0}/alunos";
@@ -32,14 +33,16 @@ public class MySQLFactory {
 			if (conn != null && !conn.isClosed()) {
 				return conn;
 			}
-			basicDataSource = new BasicDataSource();
-			basicDataSource.setDriverClassName("com.mysql.jdbc.Driver");
-			basicDataSource.setUrl(getConnectionString());
-			basicDataSource.setUsername(userName);
-			basicDataSource.setPassword(password);
-			conn = basicDataSource.getConnection();
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(getConnectionString(), userName, password);
+//			basicDataSource = new BasicDataSource();
+//			basicDataSource.setDriverClassName("com.mysql.jdbc.Driver");
+//			basicDataSource.setUrl(getConnectionString());
+//			basicDataSource.setUsername(userName);
+//			basicDataSource.setPassword(password);
+//			conn = basicDataSource.getConnection();
 			return conn;
-		} catch (SQLException e) {
+		} catch (SQLException | ClassNotFoundException e) {
 			return null;
 		}
 	}

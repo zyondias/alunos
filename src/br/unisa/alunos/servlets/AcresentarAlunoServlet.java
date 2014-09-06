@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.unisa.alunos.repository.AlunoRepository;
 import br.unisa.alunos.vo.AlunoVo;
 
 /**
@@ -28,9 +29,11 @@ public class AcresentarAlunoServlet extends HttpServlet{
 		//capturando aluno
 		AlunoVo aluno = caputrarDadosAluno(request);
 		//inserindo aluno no banco
-		response.getWriter().print(aluno);
-		//enviado para lista
-		//response.sendRedirect("sucesso.html");
+		if(!AlunoRepository.insert(aluno)){
+			response.sendRedirect("sucesso.html");	
+		}else
+			response.sendRedirect("erro.html");
+
 	}
 	
 	private static AlunoVo caputrarDadosAluno(HttpServletRequest request){
