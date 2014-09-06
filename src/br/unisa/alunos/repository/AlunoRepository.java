@@ -2,7 +2,10 @@ package br.unisa.alunos.repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.unisa.alunos.repository.internal.MySQLFactory;
 import br.unisa.alunos.vo.AlunoVo;
@@ -28,5 +31,27 @@ public class AlunoRepository {
 			e.printStackTrace();
 			return false;
 		}
+	}
+	
+	public static List<AlunoVo> buscaAlunos(){
+		List<AlunoVo>alunos = new ArrayList<AlunoVo>();
+		PreparedStatement ps;
+		try {
+			ps = con.prepareStatement("SELECT * FROM alunos");
+			ResultSet result = ps.executeQuery();
+			while(result.next()){
+				AlunoVo aluno = new AlunoVo();
+				aluno.setNome(result.getString("nome"));
+				aluno.setIdade(result.getInt("idade"));
+				aluno.setRa(result.getString("ra"));
+				aluno.setCurso(result.getString("curso"));
+				alunos.add(aluno);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return alunos;
 	}
 }

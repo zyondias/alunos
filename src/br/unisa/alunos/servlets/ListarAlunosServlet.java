@@ -8,6 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import br.unisa.alunos.repository.AlunoRepository;
+import br.unisa.alunos.vo.AlunoVo;
 @WebServlet("/listarAlunos")
 public class ListarAlunosServlet extends HttpServlet{
 	
@@ -22,7 +25,10 @@ public class ListarAlunosServlet extends HttpServlet{
 		
 		PrintWriter out = response.getWriter();
 		out.print("<html><head></head><body><h3>Lista de alunos</h3>");
-		out.print("<a href=cadastro-aluno.html>Cadastra Aluno</a></body></html>");
+		for(AlunoVo aluno : AlunoRepository.buscaAlunos()){
+			out.print(aluno+"<br />");
+		}
+		out.print("<br /><a href=cadastro-aluno.html>Cadastra Aluno</a></body></html>");
 	}
 
 }
