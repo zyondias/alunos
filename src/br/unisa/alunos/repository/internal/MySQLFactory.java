@@ -18,7 +18,7 @@ public class MySQLFactory {
 	
 	private static String userName = "root";
 	
-	private static String password = "falxmen30";
+	private static String password = "xxxx";
 	
 //	private static BasicDataSource basicDataSource;
 	private static Connection conn;
